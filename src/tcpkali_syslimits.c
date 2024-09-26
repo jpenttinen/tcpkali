@@ -31,7 +31,13 @@
 #include <stdarg.h>
 #include <sys/types.h>
 #include <sys/resource.h>
+#ifdef __APPLE__
 #include <sys/sysctl.h>
+#elif defined(__linux__)
+#include <linux/sysctl.h>
+#else
+// Include an alternative header or handle the absence of sysctl.h
+#endif
 #include <sys/socket.h>
 #include <errno.h>
 #include <assert.h>
